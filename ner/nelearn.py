@@ -8,6 +8,7 @@ from perceplearn import percepLearn
 training=sys.argv[1]
 modelFile=sys.argv[2]
 
+
 formattedtr="formattedNERtraining.txt"
 trainingFile=open(training,"r+",errors='ignore')
 formattedTrainingfile=open(formattedtr,"w+")
@@ -19,7 +20,8 @@ for line in trainingFile.readlines():
     for word in words:
         currentWord=word.split("/")[0]
         currentTag=word.split("/")[1]
-        currentNER=word.split("/")[2]
+        index=word.rfind("/",0,len(word))
+        currentNER=word[index+1:]
         if wordOfSentenceCounter==0:
             prevWordMinusTags="BOS"
             prevTag="BOS"
@@ -50,6 +52,7 @@ for line in trainingFile.readlines():
         formattedTrainingfile.write("wnextTag:"+nextTag+" ")
         formattedTrainingfile.write("wnext:"+nextWordminusTags+" ")
         formattedTrainingfile.write("\n")
+
 formattedTrainingfile.close()
 percepLearn(formattedtr,modelFile)
 
