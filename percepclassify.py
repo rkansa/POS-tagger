@@ -2,13 +2,9 @@ __author__ = 'raj'
 import json
 import sys
 
-modelFile=sys.argv[1]
-
-
 
 def percepClassify(modelFile):
     modelFile=open(modelFile,"r")
-
     dict_classifier=json.loads(modelFile.readline())
     labels=[]
     for item in dict_classifier:
@@ -31,6 +27,7 @@ def percepClassify(modelFile):
                     predictor[each_class]+=int(dict_classifier[each_class][word])
             for key in predictor.keys():
                 if predictor[key]>max:
+                    max=predictor[key]
                     determined_class=key
             if determined_class=="":
                 determined_class=tieBreaker
@@ -38,5 +35,6 @@ def percepClassify(modelFile):
             sys.stdout.flush()
 
 if __name__=='__main__':
+    modelFile=sys.argv[1]
     percepClassify(modelFile)
 

@@ -2,11 +2,9 @@ __author__ = 'raj'
 
 import json
 import sys
-trainingFile=sys.argv[1]
-modelFile=sys.argv[2]
 
 
-def percepLearn(trainingFile,modelFIle):
+def percepLearn(trainingFile,modelFile):
     super_dict={}
     super_dict_avg={}
 
@@ -45,7 +43,7 @@ def percepLearn(trainingFile,modelFIle):
     inputfile.close()
     counter=0
     iteration=0
-    MAX_ITERATIONS=20
+    MAX_ITERATIONS=25
     #Learn through Iterations
     while deltaError>0.0001 and iteration<MAX_ITERATIONS:
         iteration+=1
@@ -68,6 +66,7 @@ def percepLearn(trainingFile,modelFIle):
                     predictor[each_class]+=int(super_dict[each_class][word])
             for key in predictor.keys():
                 if predictor[key]>max:
+                    max=predictor[key]
                     determined_class=key
             if determined_class=="":
                 determined_class=deterministic_predictor
@@ -100,6 +99,8 @@ def percepLearn(trainingFile,modelFIle):
     json.dump(super_dict_avg,model)
 
 if __name__=='__main__':
+    trainingFile=sys.argv[1]
+    modelFile=sys.argv[2]
     percepLearn(trainingFile,modelFile)
 
 
