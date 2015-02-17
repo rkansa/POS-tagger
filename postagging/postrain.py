@@ -19,7 +19,9 @@ for line in trainingFile.readlines():
     words_length=len(words)
     for word in words:
         currentword=word.split("/")[0]
-        tag=word.split("/")[1]
+        index=word.rfind("/",0,len(word))
+        tag=word[index+1:]
+
         if wordOfSentenceCounter==0:
             prevWord="BOS"
             prevwordminusTag=prevWord
