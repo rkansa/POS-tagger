@@ -30,6 +30,6 @@ I-ORG  | 0.6151    | 0.3382 | 0.4364
 I-LOC  | 0.8450    | 0.1780 | 0.29411
 I-MISC | 0.4396    | 0.0779 | 0.1324
 
-Overall FScore=0.9046
+#Overall FScore=0.9046
 
-Naive bayes assumes that each feature occurs independently of the other features,while NER tagging takes into context the previous and the later words(Sliding window) to determine the entity of the current tag, which gives it a better Fscore in comparison.Thus for each word we have 3 relevant features at our disposal,which provides better supervised learning as against the conditional independent assumption of Naive Bayes.The Fscore for "O" entity does not reduce as drastically as other tags when Naive Bayes classifier is used,because "O" has a large prior probability compared to others and as most of the data has entity "O",a large chunk of the data is correctly classified as "O".  
+Naive bayes assumes that each feature occurs independently of the other features,while NER tagging takes into context the previous and the later words(Sliding window) to determine the entity of the current tag, which gives it a better Fscore in comparison.Thus for each word we have 3 relevant features at our disposal,which provides better supervised learning as against the conditional independent assumption of Naive Bayes.The Fscore for "O" entity does not reduce as drastically as other tags when Naive Bayes classifier is used,because "O" has a large prior probability compared to others and as most of the data has entity "O",a large chunk of the data is correctly classified as "O".
