@@ -2,7 +2,7 @@ __author__ = 'raj'
 
 import json
 import sys
-
+import random
 
 def percepLearn(trainingFile,modelFile):
     super_dict={}
@@ -22,7 +22,6 @@ def percepLearn(trainingFile,modelFile):
         if words[0] not in classes:
             classes.append(words[0])
             classes_Avg.append(words[0])
-
     inputfile.close()
     inputfile=open(trainingFile,"r")
     for line in inputfile.readlines():
@@ -47,11 +46,13 @@ def percepLearn(trainingFile,modelFile):
     #Learn through Iterations
     while deltaError>0.0001 and iteration<MAX_ITERATIONS:
         iteration+=1
-        print(iteration)
+        print("Iteration number:"+str(iteration))
         lineCount=0
         errorCount=0
         inputfile=open(trainingFile,"r")
-        for line in inputfile.readlines():
+        lines=(inputfile.readlines())
+        random.shuffle(lines)
+        for line in lines:
             max=0
             lineCount+=1
             determined_class=""
@@ -101,6 +102,7 @@ def percepLearn(trainingFile,modelFile):
 if __name__=='__main__':
     trainingFile=sys.argv[1]
     modelFile=sys.argv[2]
+
     percepLearn(trainingFile,modelFile)
 
 
