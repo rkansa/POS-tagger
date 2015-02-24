@@ -2,9 +2,10 @@ __author__ = 'raj'
 
 import json
 import sys
+import codecs
 
 def netag(modelFile):
-    modelFile=open(modelFile,"r")
+    modelFile=open(modelFile,"r",errors='ignore')
 
     dict_classifier=json.loads(modelFile.readline())
     labels=[]
@@ -12,7 +13,7 @@ def netag(modelFile):
         labels.append(item)
     modelFile.close()
     tieBreaker=labels[0]
-
+    sys.stdin=codecs.getreader('utf-8')(sys.stdin.detach(),errors='ignore')
     for line in sys.stdin:
         words=line.split()
         wordOfSentenceCounter=0
@@ -78,5 +79,4 @@ def netag(modelFile):
 
 if __name__=='__main__':
     modelFile=sys.argv[1]
-    #modelFile="model.ner"
     netag(modelFile)

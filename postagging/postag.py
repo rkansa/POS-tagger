@@ -1,6 +1,7 @@
 __author__ = 'raj'
 import json
 import sys
+import codecs
 
 def posTagging(modelFile):
     modelFile=open(modelFile,"r")
@@ -11,7 +12,7 @@ def posTagging(modelFile):
         labels.append(item)
     modelFile.close()
     tieBreaker=labels[0]
-
+    sys.stdin=codecs.getreader('utf-8')(sys.stdin.detach(),errors='ignore')
     for line in sys.stdin:
         words=line.split()
         wordOfSentenceCounter=0
