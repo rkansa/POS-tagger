@@ -4,6 +4,7 @@ import sys
 sys.path.insert(0,'../')
 from perceplearn import percepLearn
 
+
 training=sys.argv[1]
 modelFile=sys.argv[2]
 
@@ -21,6 +22,8 @@ for line in trainingFile.readlines():
         currentword=word.split("/")[0]
         index=word.rfind("/",0,len(word))
         tag=word[index+1:]
+        suffix3=currentword[-3:]
+        suffix2=currentword[-2:]
 
         if wordOfSentenceCounter==0:
             prevWord="BOS"
@@ -60,6 +63,8 @@ for line in trainingFile.readlines():
         formattedTrainingfile.write("wcurr:"+currentword+" ")
         formattedTrainingfile.write("wprev:"+prevwordminusTag+" ")
         formattedTrainingfile.write("wnext:"+nextWordminusTag+" ")
+        formattedTrainingfile.write("suffix3:"+suffix3+" ")
+        formattedTrainingfile.write("suffix2:"+suffix2+" ")
         formattedTrainingfile.write("\n")
 formattedTrainingfile.close()
 percepLearn(formattedtr,modelFile)

@@ -19,6 +19,12 @@ for line in trainingFile.readlines():
     words_length=len(words)
     for word in words:
         currentWord=word.split("/")[0]
+        if currentWord.islower():
+            wordShape="a"
+        elif currentWord.isupper():
+            wordShape="A"
+        else:
+            wordShape="Aa"
         currentTag=word.split("/")[1]
         index=word.rfind("/",0,len(word))
         currentNER=word[index+1:]
@@ -47,10 +53,12 @@ for line in trainingFile.readlines():
 
         formattedTrainingfile.write(currentNER+" ")
         formattedTrainingfile.write("wcurr:"+currentWord+" ")
+        formattedTrainingfile.write("wcurrTag:"+currentTag+"")
         formattedTrainingfile.write("wprevTag:"+prevTag+" ")
         formattedTrainingfile.write("wprev:"+prevWordMinusTags+" ")
         formattedTrainingfile.write("wnextTag:"+nextTag+" ")
         formattedTrainingfile.write("wnext:"+nextWordminusTags+" ")
+        formattedTrainingfile.write("wordShape:"+wordShape+" ")
         formattedTrainingfile.write("\n")
 
 formattedTrainingfile.close()

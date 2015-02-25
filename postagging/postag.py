@@ -21,6 +21,8 @@ def posTagging(modelFile):
         outputTags=[]
         for word in words:
             currentword=word
+            suffix3=currentword[-3:]
+            suffix2=currentword[-2:]
             if wordOfSentenceCounter==0:
                 prevWord="BOS"
                 if wordOfSentenceCounter+1< words_length:
@@ -35,7 +37,7 @@ def posTagging(modelFile):
                     nextWord=words[wordOfSentenceCounter+1]
                 else:
                     nextWord="EOS"
-            newTestExample="wcurr:"+currentword+" "+"wprev:"+prevWord+" "+"wnext:"+nextWord
+            newTestExample="wcurr:"+currentword+" "+"wprev:"+prevWord+" "+"wnext:"+nextWord+" "+"suffix3:"+suffix3+" "+"suffix2:"+suffix2
             formattedList.append(newTestExample)
             wordOfSentenceCounter+=1
 

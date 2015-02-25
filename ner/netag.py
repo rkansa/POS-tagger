@@ -23,6 +23,12 @@ def netag(modelFile):
         for word in words:
             currentWord=word.split("/")[0]
             currentTag=word.split("/")[1]
+            if currentWord.islower():
+                wordShape="a"
+            elif currentWord.isupper():
+                wordShape="A"
+            else:
+                wordShape="Aa"
             if wordOfSentenceCounter==0:
                 prevWordMinusTags="BOS"
                 prevTag="BOS"
@@ -44,7 +50,7 @@ def netag(modelFile):
                 else:
                     nextWordminusTags="EOS"
                     nextTag="EOS"
-            newTestExample="wcurr:"+currentWord+" "+"wprevTag:"+prevTag+" "+"wprev:"+prevWordMinusTags+" "+"wnextTag:"+nextTag+" "+"wnext:"+nextWordminusTags
+            newTestExample="wcurr:"+currentWord+" "+"wcurrTag:"+currentTag+" "+"wprevTag:"+prevTag+" "+"wprev:"+prevWordMinusTags+" "+"wnextTag:"+nextTag+" "+"wnext:"+nextWordminusTags+" "+"wordShape:"+wordShape
             formattedList.append(newTestExample)
             wordOfSentenceCounter+=1
 
