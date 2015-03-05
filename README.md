@@ -4,12 +4,12 @@
 
 Entity | Precision | Recall | F-Score
 -------|-----------|--------|------------------
-ORG  | 0.6980	   | 0.6586	| 0.6777
-LOC  | 0.7578	   | 0.6646 | 0.7081
-PER  | 0.8223    | 0.7348 | 0.7760
-MISC | 0.592    | 0.3325 | 0.4258
+ORG  | 0.7784	   | 0.7857	| 0.7820
+LOC  | 0.7827	   | 0.6626 | 0.7176
+PER  | 0.900    | 0.7962 | 0.8449
+MISC | 0.6948    | 0.4808 | 0.5683
 
-#Overall Fscore:0.6910
+#Overall Fscore:0.7660
 
 3.When Naive Bayes classifier is used for NER tagging,the performance decreases significantly.The results are as follows:
 
