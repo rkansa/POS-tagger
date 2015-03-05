@@ -15,6 +15,7 @@ def netag(modelFile):
     tieBreaker=labels[0]
     sys.stdin=codecs.getreader('utf-8')(sys.stdin.detach(),errors='ignore')
     for line in sys.stdin:
+        prevNer="BOS"
         words=line.split()
         wordOfSentenceCounter=0
         words_length=len(words)
@@ -59,6 +60,7 @@ def netag(modelFile):
             max=0
             determined_class=""
             sentWords=sentence.split()
+            sentWords.append("wprevNER:"+prevNer)
             predictor={}
             for c in labels:
                 predictor.setdefault(c,0)
@@ -74,6 +76,7 @@ def netag(modelFile):
                     determined_class=key
             if determined_class=="":
                 determined_class=tieBreaker
+            prevNer=determined_class
             outputTags.append(determined_class)
 
         str=""
